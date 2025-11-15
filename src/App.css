@@ -1,0 +1,15 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Ensure the body spans the full height of the viewport */
+    width: 100%;  /* Ensure the body spans the full width of the viewport */
+    box-sizing: border-box;
+}
+
+/* Ensure the root div and App div fill the entire viewport */
+#root, .App {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Optional: Adjust layout direction */
+}

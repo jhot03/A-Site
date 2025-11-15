@@ -1,0 +1,47 @@
+.header {
+    background-color: #1a1a1a; /* Sleek dark background */
+    padding: 1rem 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid #333333; /* Light gray bottom border */
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: #ffffff; /* White text for contrast */
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    position: relative; /* For underline animation */
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; /* Position the underline slightly below the text */
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #00bcd4; /* Highlight color for underline */
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #00bcd4; /* Highlight color for hover effect */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.nav-links a:hover::after {
+    width: 100%; /* Expand underline on hover */
+}
+
+.nav-links a:active {
+    color: #ff4081; /* Different color for active state */
+    transform: scale(0.95); /* Slight shrink effect on click */
+}

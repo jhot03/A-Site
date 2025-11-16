@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="flex items-center space-x-4">
           <span className="text-[#CFCFD8] text-sm">© {new Date().getFullYear()} Jayce </span>
           <span className="text-[#CFCFD8] text-sm opacity-40">•</span>
-          <span className="text-[#CFCFD8] text-sm opacity-60">Built for you</span>
+          <span className="text-[#CFCFD8] text-sm opacity-60">Automate Anything</span>
         </div>
 
         <nav aria-label="footer" className="flex items-center space-x-6">

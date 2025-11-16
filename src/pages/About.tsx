@@ -31,12 +31,12 @@ const About = () => {
             className="max-w-xl"
           >
             <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-wide leading-tight">
-              Building intelligent automation that compounds.
+              Building automated solutions for YOU.
             </h1>
             <p className="mt-5 text-[#CFCFD8] text-base sm:text-lg leading-relaxed">
-              I design, architect, and ship automation systems that remove friction, amplify teams,
-              and unlock new capability. My work blends AI, APIs, and product thinking to deliver
-              real outcomes—faster ops, higher quality, and scalable leverage.
+              I'm Jayce, a adamant software engineer out of California. I love solving problems and creating innovative solutions.
+              I like to live by the mantra, "What can be dreamed, can be done." I specialize in delivering. Delivering high quality
+              products to meet your needs, saving time, and money through intelligent automation.
             </p>
           </motion.div>
         </div>
@@ -92,10 +92,10 @@ const About = () => {
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, ease: easeOut }}
         >
-          I partner with founders and teams to uncover high‑leverage automation opportunities,
-          prototype quickly, and operationalize durable systems. From lead enrichment pipelines to
-          AI support agents and workflow orchestrators, I’m focused on clarity, velocity, and
-          measurable results—shipped fast, maintained cleanly, and designed to scale.
+          I work with a diverse range of tools and can accomodate various technical stacks or workspace environments. Whatever your industry or size,
+          I'll find the right automation solutions for you. From small businesses to large enterprises, my goal is to empower you. 
+          Empower you to focus on what matters most, while I handle the repetitive tasks through intelligent automation.
+          Let's collaborate to transform your workflows and unlock new levels of productivity.
         </motion.p>
       </section>
     </div>

@@ -3,10 +3,11 @@ import { motion, easeOut } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import Modal from './Modal';
 
-type ExampleItem = {
+type Exampleselected = {
   name: string;
   description: string;
   longDescription?: string;
+  image?: string;
   service?: string;
   video?: string;
   icon?: React.ReactNode;
@@ -14,7 +15,7 @@ type ExampleItem = {
 
 type ExampleGridProps = {
   title: string;
-  examples: ExampleItem[];
+  examples: Exampleselected[];
 };
 
 const containerVariants = {
@@ -22,22 +23,22 @@ const containerVariants = {
   show: { opacity: 1, transition: { staggerChildren: 0.12 } },
 };
 
-const itemVariants = {
+const selectedVariants = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOut } },
 };
 
 const ExampleGrid: React.FC<ExampleGridProps> = ({ title, examples }) => {
   const navigate = useNavigate();
-  const [selected, setSelected] = React.useState<ExampleItem | null>(null);
+  const [selected, setSelected] = React.useState<Exampleselected | null>(null);
 
-  const handleItemClick = (item: ExampleItem) => {
-    if (item.longDescription || !item.service) {
-      setSelected(item);
+  const handleselectedClick = (selected: Exampleselected) => {
+    if (selected.longDescription || !selected.service) {
+      setSelected(selected);
       return;
     }
-    if (item.service) {
-      navigate(`/contact?service=${encodeURIComponent(item.service)}`);
+    if (selected.service) {
+      navigate(`/contact?service=${encodeURIComponent(selected.service)}`);
     }
   };
 
@@ -62,35 +63,42 @@ const ExampleGrid: React.FC<ExampleGridProps> = ({ title, examples }) => {
           viewport={{ once: true, margin: '-50px' }}
         >
         {/* Inner contents of each grid element */}
-          {examples.map((item, idx) => (
+          {examples.map((selected, idx) => (
             <motion.article
-              key={`${item.name}-${idx}`}
-              variants={itemVariants}
-              onClick={() => handleItemClick(item)}
+              key={`${selected.name}-${idx}`}
+              variants={selectedVariants}
+              onClick={() => handleselectedClick(selected)}
               className="group relative cursor-pointer rounded-2xl border border-white/5 bg-linear-to-br from-white/8 to-white/2 shadow-[0_0_20px_rgba(0,0,0,0.4)] transition duration-200 ease-out hover:scale-[1.03] hover:border-white/8"
             >
               <div className="p-6">
                 <div className="mb-5 overflow-hidden rounded-xl border border-white/5 bg-[#111118]">
-                  {item.video ? (
+                  {selected.video ? (
                     <video
                       className="w-full h-44 sm:h-48 object-cover"
-                      src={item.video}
+                      src={selected.video}
                       autoPlay
                       loop
                       muted
                       playsInline
                     />
+                  ) : selected.image ? (
+                    <img
+                      src={selected.image}
+                      alt={selected.name}
+                      className="w-full aspect-video object-cover"
+                      loading="lazy"
+                    />
                   ) : (
                     <div className="flex h-44 sm:h-48 items-center justify-center bg-linear-to-br from-[#9333EA] to-[#14B8A6]">
                       <div className="flex h-36 w-36 items-center justify-center rounded-xl bg-[#0A0A0F]/60 border border-white/10 text-white text-7xl">
-                        {item.icon ?? '✨'}
+                        {selected.icon ?? '✨'}
                       </div>
                     </div>
                   )}
                 </div>
 
-                <h3 className="text-white text-lg font-semibold tracking-wide">{item.name}</h3>
-                <p className="mt-2 text-[#CFCFD8] text-sm leading-relaxed">{item.description}</p>
+                <h3 className="text-white text-lg font-semibold tracking-wide">{selected.name}</h3>
+                <p className="mt-2 text-[#CFCFD8] text-sm leading-relaxed">{selected.description}</p>
               </div>
 
               <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-200 group-hover:opacity-100 bg-linear-to-br from-[#4F46E5]/10 via-[#6366F1]/10 to-[#0EA5E9]/10" />
@@ -109,22 +117,28 @@ const ExampleGrid: React.FC<ExampleGridProps> = ({ title, examples }) => {
           <div className="space-y-5">
             <div className="overflow-hidden rounded-xl border border-white/5 bg-[#111118]">
               {selected.video ? (
-                <video
-                  className="w-full max-h-[420px] object-cover"
-                  src={selected.video}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  controls
-                />
-              ) : (
-                <div className="flex h-56 items-center justify-center bg-linear-to-br from-[#9333EA] to-[#14B8A6]">
-                  <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-[#0A0A0F]/60 border border-white/10 text-white text-4xl">
-                    {selected.icon ?? '✨'}
-                  </div>
-                </div>
-              )}
+                    <video
+                      className="w-full h-44 sm:h-48 object-cover"
+                      src={selected.video}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    />
+                  ) : selected.image ? (
+                    <img
+                      src={selected.image}
+                      alt={selected.name}
+                      className="w-full aspect-video object-cover"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="flex h-44 sm:h-48 items-center justify-center bg-linear-to-br from-[#9333EA] to-[#14B8A6]">
+                      <div className="flex h-36 w-36 items-center justify-center rounded-xl bg-[#0A0A0F]/60 border border-white/10 text-white text-7xl">
+                        {selected.icon ?? '✨'}
+                      </div>
+                    </div>
+                  )}
             </div>
 
             <p className="text-[#CFCFD8] leading-relaxed">

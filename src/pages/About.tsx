@@ -83,6 +83,21 @@ const About = () => {
         </motion.div>
       </section>
 
+      {/* Additional about paragraph (keeps your original flow) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+        <motion.p
+          className="text-[#CFCFD8] text-base sm:text-lg leading-relaxed max-w-3xl"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, ease: easeOut }}
+        >
+          I partner with founders and teams to uncover high‑leverage automation opportunities,
+          prototype quickly, and operationalize durable systems. From lead enrichment pipelines to
+          AI support agents and workflow orchestrators, I’m focused on clarity, velocity, and
+          measurable results—shipped fast, maintained cleanly, and designed to scale.
+        </motion.p>
+      </section>
     </div>
   );
 };

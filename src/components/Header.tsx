@@ -23,8 +23,9 @@ const Header = () => {
                 <nav className="flex items-center gap-8">
                     {[
                         { path: '/home', label: 'Home' },
+                        { path: '/services', label: 'Services' },
+                        { path: '/testimonies', label: 'Testimonials' },
                         { path: '/about', label: 'About' },
-                        { path: '/testimonies', label: 'Testimonials' }
                     ].map((link) => (
                         <Link 
                             key={link.path}

@@ -1,6 +1,11 @@
 import { motion, easeOut } from 'framer-motion';
+import { useSearchParams } from 'react-router-dom';
+import { serviceExamples } from '../constants/serviceExamples';
 
 const Contact = () => {
+  const [searchParams] = useSearchParams();
+  const preselectedService = searchParams.get('service') || ''; // Get the service from the query parameter
+
   const inputClass =
     "w-full rounded-lg border border-white/10 bg-white/5 text-white placeholder-white/40 " +
     "px-4 py-3 outline-none transition " +
@@ -44,6 +49,28 @@ const Contact = () => {
                     Company (optional)
                   </label>
                   <input id="company" name="company" type="text" placeholder="Company name" className={inputClass} />
+                </div>
+
+                <div>
+                  <label htmlFor="service" className="block text-sm font-medium text-[#CFCFD8] mb-1">
+                    Service
+                  </label>
+                  <select
+                    id="service"
+                    name="service"
+                    required
+                    defaultValue={preselectedService} // Preselect the service if passed in the query
+                    className={inputClass}
+                  >
+                    <option value="" disabled>
+                      Select a service
+                    </option>
+                    {serviceExamples.map((example) => (
+                      <option key={example.name} value={example.name}>
+                        {example.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 <div>

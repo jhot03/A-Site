@@ -1,0 +1,152 @@
+
+🎨 DESIGN SYSTEM (USE THESE EXACT VALUES)
+1. Color Palette (Dark Theme)
+
+Base Colors:
+
+#0A0A0F — primary background (almost-black)
+
+#111118 — elevated surfaces
+
+#18181F — card backgrounds
+
+#FFFFFF — primary text
+
+#CFCFD8 — secondary text
+
+Accent Colors (use sparingly):
+
+#4F46E5 — Indigo glow
+
+#6366F1 — Soft indigo
+
+#14B8A6 — Teal accent
+
+#0EA5E9 — Cyan accent
+
+#9333EA — Purple glow accent
+
+Border/Shadow Colors:
+
+rgba(255,255,255,0.05)
+
+rgba(255,255,255,0.08)
+
+2. Gradient Presets
+
+Use these for backgrounds, buttons, and section dividers:
+
+Gradient #1 (Primary Glow):
+bg-gradient-to-br from-[#4F46E5] via-[#6366F1] to-[#0EA5E9]
+
+Gradient #2 (Soft Neon):
+bg-gradient-to-br from-[#9333EA] to-[#14B8A6]
+
+Gradient #3 (Subtle Shine):
+bg-gradient-to-br from-white/[0.08] to-white/[0.02]
+
+3. Typography
+
+Use Inter, Satoshi, or Urbanist if available.
+
+Apply:
+
+Headings:
+
+Tight leading
+
+Semi-bold or bold
+
+Tracking-wide
+
+Body:
+
+Neutral leading
+
+Light to medium
+
+Tone:
+
+Confident and minimal
+
+No clutter
+
+Clean and modern
+
+4. Spacing & Layout Rules
+
+Use generous padding (py-24, py-32 for large sections)
+
+Avoid cramped layouts
+
+Cards should have rounded corners (rounded-2xl)
+
+Use subtle borders (border border-white/5)
+
+Use soft shadows (shadow-[0_0_20px_rgba(0,0,0,0.4)])
+
+⚡ ANIMATION SYSTEM (Framer Motion)
+
+Use Framer Motion for:
+
+Scroll Animations
+
+fade in + rise:
+
+initial: { opacity: 0, y: 20 }
+
+animate: { opacity: 1, y: 0 }
+
+transition: { duration: 0.6, ease: "easeOut" }
+
+Hover Animations
+
+scale to 1.03
+
+glow via tailwind shadow
+
+increase border opacity
+
+Staggered Animations for Grids
+
+parent: staggerChildren: 0.12
+
+children: same fade+rise animation
+
+Buttons
+
+subtle glow on hover
+
+scale up slightly
+
+transition: 200ms ease-out
+
+📌 OVERALL GOAL
+
+Transform this project into a very sleek, modern, futuristic, premium dark-mode site similar to:
+
+Linear.app
+
+Vercel.com
+
+OpenAI.com
+
+Raycast.com
+
+Notion AI
+
+The website should feel:
+
+smooth
+
+premium
+
+animated
+
+spacious
+
+visually impressive
+
+professional
+
+like a cutting-edge AI/automation consultancy

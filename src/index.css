@@ -9,3 +9,22 @@
 }
 .animate-float1 { animation: float1 20s ease-in-out infinite; }
 .animate-float2 { animation: float2 25s ease-in-out infinite; }
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    /* Ensure dark background even if Tailwind/base runs later */
+    background-color: #0A0A0F;
+    color-scheme: dark;
+}
+
+#root, .App {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}

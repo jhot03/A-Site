@@ -1,0 +1,7 @@
+Videos / Images: 
+Document Processor for specific data 
+AI Email Assistant, trigger that hits, and responds, pushes notification to you to verify send 
+Automated generation of videos to platforms 
+Chatbot with relevant context 
+Google workspace script and automation to read in info 
+Voice Calling agent that waits in line and stuff 

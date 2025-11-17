@@ -1,0 +1,15 @@
+Testimonials
+
+I need image of the flow or specific data perhaps a video could work but difficult to generate all of this 
+
+1:
+Maintanence for a chatbot that is an injectable widget based on their specific documents 
+- Can make a flow chart or n8n workflow which demonstrates the flow for this 
+
+2: 
+Google workspace automation 
+- Scripts to respond to emails, integrated with AI intelligence which notifies the user a new draft was created 
+
+3: 
+Social Media Automation 
+- Auto posting and scheduling posts. Generating AI content and automated posting. 

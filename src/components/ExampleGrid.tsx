@@ -118,7 +118,7 @@ const ExampleGrid: React.FC<ExampleGridProps> = ({ title, examples }) => {
             <div className="overflow-hidden rounded-xl border border-white/5 bg-[#111118]">
               {selected.video ? (
                     <video
-                      className="w-full h-44 sm:h-48 object-cover"
+                      className="w-full aspect-video object-cove"
                       src={selected.video}
                       autoPlay
                       loop

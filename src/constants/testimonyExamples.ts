@@ -1,26 +1,35 @@
+import {
+  ONE_TIME_BUILD,
+  CONSULTATION_AND_STRATEGY
+} from './ServiceNames';
+
 export const testimonyExamples = [
   {
-    name: 'Testimony 1',
-    description: 'Description for testimony 1',
+    name: 'Chatbot with Company Knowledge',
+    description: 'This chatbot was tailored to the customer\'s knowledge base to supply 24/7 support to any inquiries.',
     longDescription:
-      'We automated intake, enrichment, and routing. Result: 3x faster response, +18% conversion, and zero manual triage.',
-    service: 'Service A',
+      'Deployed a custom AI chatbot integrated with the company\'s internal knowledge base, resulting in a reduction in support tickets.' + 
+      ' What was previously handled by human team members is now efficiently managed by the AI, providing instant responses to common questions.' +
+      'This has led to staff being able to focus on more meaningful work.',
+    service: ONE_TIME_BUILD,
     icon: '🌟',
   },
   {
-    name: 'Testimony 2',
-    description: 'Description for testimony 2',
+    name: 'Automated Workspace Management',
+    description: 'Automated calendar approval and resource allocation for users within the workspace',
     longDescription:
-      'Built an AI support triage that resolved 42% of tickets automatically while surfacing insights to the team.',
-    service: 'Service B',
+      'Implemented an automated system that manages calendar approvals and resource allocation within the organization\'s workspace.' +
+      ' This system intelligently handles scheduling conflicts, approves meeting requests based on predefined criteria.',
+    service: ONE_TIME_BUILD,
     icon: '🤖',
   },
   {
-    name: 'Testimony 3',
-    description: 'Description for testimony 3',
+    name: 'Social Media Automation',
+    description: 'Discussed automation strategy for pulling analytics and posting',
     longDescription:
-      'Event-driven sync across CRM, billing, and analytics eliminated stale data and reduced ops toil by 60%.',
-    service: 'Service C',
+      'Looked at clients current social media strategy and identified areas for automation.' +
+      ' Developed a plan to automate the pulling of analytics data and scheduling posts to reduce manual effort involved.',
+    service: CONSULTATION_AND_STRATEGY,
     icon: '⚙️',
   },
 ];

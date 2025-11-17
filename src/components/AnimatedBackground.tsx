@@ -1,33 +1,72 @@
+import { useMemo } from "react";
 import "../styles/AnimatedBackground.css";
 
-const AnimatedBackground = () => {
-    return (
-        <div className="fixed inset-0 z-0 overflow-hidden bg-[#0A0A0F]">
-            {/* Blob 1 - Indigo/Cyan gradient */}
-            <div 
-                className="absolute top-[20%] left-[10%] w-[500px] h-[500px] rounded-full opacity-30 blur-[120px] animate-float-slow"
-                style={{
-                    background: 'radial-gradient(circle, #4F46E5 0%, #6366F1 40%, #0EA5E9 100%)',
-                }}
-            />
-            
-            {/* Blob 2 - Purple/Teal gradient */}
-            <div 
-                className="absolute bottom-[15%] right-[15%] w-[600px] h-[600px] rounded-full opacity-25 blur-[130px] animate-float-slow-delayed"
-                style={{
-                    background: 'radial-gradient(circle, #9333EA 0%, #14B8A6 100%)',
-                }}
-            />
-            
-            {/* Blob 3 - Soft indigo accent */}
-            <div 
-                className="absolute top-[60%] left-[40%] w-[400px] h-[400px] rounded-full opacity-20 blur-[100px] animate-float-gentle"
-                style={{
-                    background: 'radial-gradient(circle, #6366F1 0%, #4F46E5 100%)',
-                }}
-            />
-        </div>
-    );
-}
+type BlobDef = {
+  top: string;
+  left: string;
+  size: number;
+  blur: number;
+  opacity: number;
+  bg: string;
+  anim: string;
+  duration: number;
+  delay: number;
+};
+
+const gradients: string[][] = [
+  ["#4F46E5", "#6366F1", "#0EA5E9"], 
+  ["#9333EA", "#14B8A6"],            
+  ["#6366F1", "#4F46E5"],
+  ["#14B8A6", "#0EA5E9"],
+];
+
+const makeRadial = (c: string[]) =>
+  c.length === 3
+    ? `radial-gradient(circle, ${c[0]} 0%, ${c[1]} 40%, ${c[2]} 100%)`
+    : `radial-gradient(circle, ${c[0]} 0%, ${c[1]} 100%)`;
+
+const AnimatedBackground = ({ count = 3 }: { count?: number }) => {
+  const blobs = useMemo<BlobDef[]>(() => {
+    const rnd = (min: number, max: number) => Math.random() * (max - min) + min;
+    const anims = ["animate-float-slow", "animate-float-slow-delayed", "animate-float-gentle"];
+
+    return Array.from({ length: count }).map(() => {
+      const size = Math.round(rnd(380, 720));
+      return {
+        top: `${Math.round(rnd(5, 75))}%`,
+        left: `${Math.round(rnd(5, 80))}%`,
+        size,
+        blur: Math.round(size * rnd(0.18, 0.26)),
+        opacity: +rnd(0.18, 0.32).toFixed(2),
+        bg: makeRadial(gradients[Math.floor(rnd(0, gradients.length))]),
+        anim: anims[Math.floor(rnd(0, anims.length))],
+        duration: Math.round(rnd(18, 32)),
+        delay: Math.round(rnd(0, 8)),
+      };
+    });
+  }, [count]);
+
+  return (
+    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-[#0A0A0F]">
+      {blobs.map((b, i) => (
+        <div
+          key={i}
+          className={`absolute rounded-full ${b.anim}`}
+          style={{
+            top: b.top,
+            left: b.left,
+            width: b.size,
+            height: b.size,
+            filter: `blur(${b.blur}px)`,
+            opacity: b.opacity,
+            background: b.bg,
+            animationDuration: `${b.duration}s`,
+            animationDelay: `${b.delay}s`,
+          }}
+        />
+      ))}
+    </div>
+  );
+};
 
 export default AnimatedBackground;

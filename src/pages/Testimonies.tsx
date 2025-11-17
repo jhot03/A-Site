@@ -6,7 +6,7 @@ const Testimonies = () => {
   return (
     <div className="testimonies-page">
         <ExampleGrid
-            title="Client Testimonies"
+            title="Client Work"
             examples={testimonyExamples}
         />
     </div>

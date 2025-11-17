@@ -18,7 +18,7 @@ export const automationExamples = [
         name: 'Workspace Automation',
         description: 'Anything in your workspace, can be automated. Sheets, Docs, Gmail, Calendar, I save time and reduce errors.',
         longDescription: 'From automating data entry in Google Sheets to managing your Gmail inbox and scheduling events in Google Calendar,' +
-        ' I create custom workflows that streamline your daily tasks and enhance productivity within the Google Workspace ecosystem.',
+        ' I create custom workflows that streamline your daily tasks and enhance productivity within YOUR Workspace ecosystem.',
         video: workSpace
     },
     {

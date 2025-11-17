@@ -1,6 +1,9 @@
 import { motion, easeOut } from 'framer-motion';
 import headShot from "../assets/images/about/Headshot-Website.png"
-
+import AiTechStack from '../assets/images/about/AI-Tech-Stack.jpg';
+import llmProviders from "../assets/images/about/llm-providers.png";
+import LangGraph from "../assets/images/about/LangGraph.jpg";
+import TechLogos from '../assets/images/about/TechLogos.jpeg';
 const About = () => {
   return (
     <div className="relative">
@@ -64,10 +67,10 @@ const About = () => {
           aria-label="Photo reel"
         >
           {[
-            { src: '/images/about-1.jpg', alt: 'Working session' },
-            { src: '/images/about-2.jpg', alt: 'Whiteboarding flows' },
-            { src: '/images/about-3.jpg', alt: 'Shipping automations' },
-            { src: '/images/about-4.jpg', alt: 'Tooling setup' },
+            { src: LangGraph, alt: 'Working session' },
+            { src: AiTechStack, alt: 'Whiteboarding flows' },
+            { src: llmProviders, alt: 'Shipping automations' },
+            { src: TechLogos, alt: 'Tooling setup' },
           ].map((img, i) => (
             <div
               key={i}

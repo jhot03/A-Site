@@ -1,4 +1,5 @@
 import { motion, easeOut } from 'framer-motion';
+import headShot from "../assets/images/about/Headshot-Website.png"
 
 const About = () => {
   return (
@@ -15,7 +16,7 @@ const About = () => {
             className="relative rounded-2xl border border-white/5 shadow-[0_0_20px_rgba(0,0,0,0.4)] bg-linear-to-br from-white/8 to-white/2 overflow-hidden"
           >
             <img
-              src="/images/headshot.jpg"
+              src={headShot}
               alt="Headshot"
               className="w-full h-full object-cover aspect-square"
               loading="lazy"

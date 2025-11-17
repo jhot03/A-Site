@@ -4,9 +4,13 @@
     <meta charset="utf-8" />
     <title>Redirecting...</title>
     <script>
-      // Redirect to index.html for React Router SPA
-      sessionStorage.redirect = location.pathname + location.search + location.hash;
-      window.location.replace("/");
+      (function() {
+        var target = location.pathname + location.search + location.hash;
+        sessionStorage.redirect = target;
+        // If project served from a subfolder (e.g. /automation-site), strip nothing because index.html lives at root of that scope.
+        // Always send to root so index.html loader can restore path.
+        window.location.replace("/");
+      })();
     </script>
   </head>
   <body></body>

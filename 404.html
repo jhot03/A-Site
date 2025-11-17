@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="0; url=/" />
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
     <script>
-      // GitHub Pages SPA redirect handler
-      const redirect = sessionStorage.redirect;
-      delete sessionStorage.redirect;
-      if (redirect && redirect !== location.href) {
-        history.replaceState(null, null, redirect);
-      }
+      // Redirect to index.html for React Router SPA
+      sessionStorage.redirect = location.pathname + location.search + location.hash;
+      window.location.replace("/");
     </script>
   </head>
   <body></body>

@@ -1,4 +1,3 @@
-export const MONITOR_AND_MAINTAIN = 'Monitor & Maintain';
 export const ONE_TIME_BUILD = 'One Time Build';
 export const CONSULTATION_AND_STRATEGY = 'Consultation & Strategy';
 export const TRAINING_AND_WORKSHOPS = 'Training & Workshops';

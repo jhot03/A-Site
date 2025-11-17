@@ -56,25 +56,25 @@ const ExampleGrid: React.FC<ExampleGridProps> = ({ title, examples }) => {
         </motion.h2>
 
         <motion.div
-          className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          // Center rows at sm/lg by using fixed column tracks and justify-center
+          className="mt-10 flex flex-wrap justify-center gap-6 lg:gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: '-50px' }}
         >
-        {/* Inner contents of each grid element */}
           {examples.map((selected, idx) => (
             <motion.article
               key={`${selected.name}-${idx}`}
               variants={selectedVariants}
               onClick={() => handleselectedClick(selected)}
-              className="group relative cursor-pointer rounded-2xl border border-white/5 bg-linear-to-br from-white/8 to-white/2 shadow-[0_0_20px_rgba(0,0,0,0.4)] transition duration-200 ease-out hover:scale-[1.03] hover:border-white/8"
-            >
+              className="group relative w-full sm:w-[20rem] lg:w-88 shrink-0 cursor-pointer rounded-2xl border border-white/5 bg-linear-to-br from-white/8 to-white/2 shadow-[0_0_20px_rgba(0,0,0,0.4)] transition duration-200 ease-out hover:scale-[1.03] hover:border-white/8"
+             >
               <div className="p-6">
                 <div className="mb-5 overflow-hidden rounded-xl border border-white/5 bg-[#111118]">
                   {selected.video ? (
                     <video
-                      className="w-full h-44 sm:h-48 object-cover"
+                      className="w-full aspect-video object-cover"
                       src={selected.video}
                       autoPlay
                       loop
@@ -89,8 +89,8 @@ const ExampleGrid: React.FC<ExampleGridProps> = ({ title, examples }) => {
                       loading="lazy"
                     />
                   ) : (
-                    <div className="flex h-44 sm:h-48 items-center justify-center bg-linear-to-br from-[#9333EA] to-[#14B8A6]">
-                      <div className="flex h-36 w-36 items-center justify-center rounded-xl bg-[#0A0A0F]/60 border border-white/10 text-white text-7xl">
+                    <div className="flex aspect-video items-center justify-center bg-linear-to-br from-[#9333EA] to-[#14B8A6]">
+                      <div className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-xl bg-[#0A0A0F]/60 border border-white/10 text-white text-3xl sm:text-4xl">
                         {selected.icon ?? '✨'}
                       </div>
                     </div>
@@ -117,28 +117,29 @@ const ExampleGrid: React.FC<ExampleGridProps> = ({ title, examples }) => {
           <div className="space-y-5">
             <div className="overflow-hidden rounded-xl border border-white/5 bg-[#111118]">
               {selected.video ? (
-                    <video
-                      className="w-full aspect-video object-cove"
-                      src={selected.video}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                    />
-                  ) : selected.image ? (
-                    <img
-                      src={selected.image}
-                      alt={selected.name}
-                      className="w-full aspect-video object-cover"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="flex h-44 sm:h-48 items-center justify-center bg-linear-to-br from-[#9333EA] to-[#14B8A6]">
-                      <div className="flex h-36 w-36 items-center justify-center rounded-xl bg-[#0A0A0F]/60 border border-white/10 text-white text-7xl">
-                        {selected.icon ?? '✨'}
-                      </div>
-                    </div>
-                  )}
+                <video
+                  className="w-full aspect-video object-cover"
+                  src={selected.video}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  controls
+                />
+              ) : selected.image ? (
+                <img
+                  src={selected.image}
+                  alt={selected.name}
+                  className="w-full aspect-video object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="flex h-72 items-center justify-center bg-linear-to-br from-[#9333EA] to-[#14B8A6]">
+                  <div className="flex h-24 w-24 items-center justify-center rounded-2xl bg-[#0A0A0F]/60 border border-white/10 text-white text-4xl">
+                    {selected.icon ?? '✨'}
+                  </div>
+                </div>
+              )}
             </div>
 
             <p className="text-[#CFCFD8] leading-relaxed">

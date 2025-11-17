@@ -27,7 +27,7 @@ const Home = () => {
 
       {/* Examples Grid of automation*/}
       <ExampleGrid
-        title="Making Life Easier"
+        title="The Surface of Automation"
         examples={automationExamples}
       />
     </div>

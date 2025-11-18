@@ -9,15 +9,15 @@ import {
 import digitalBuild from "../assets/images/services/Digital-Build.mp4"
 import plan from "../assets/images/services/Plan.png"
 import training from "../assets/images/services/Lecture.png"
-import upKeep from "../assets/images/services/Upkeep.mp4"
 import integration from "../assets/images/services/Integration.mp4"
+import websiteBuild from "../assets/images/services/Website-Build.mp4"
 
 export const serviceExamples = [
     {
         name: 'Build & Monitoring',
         service: BUILD_AND_MONITORING,
         description: 'End-to-end service from building your automation to ongoing monitoring and maintenance, ensuring optimal performance and reliability.',
-        video: upKeep
+        video: digitalBuild
     },
     {
         name: 'Integration Services',
@@ -26,11 +26,11 @@ export const serviceExamples = [
         video: integration
     },
     {
-        name: 'One Time Build',
+        name: 'Website & Application Build',
         service: ONE_TIME_BUILD,
-        description: 'From ideation to deployment, I handle the entire automation build process. One time fee, one time build.',
+        description: 'From mockups to reality. We design and build custom websites and applications tailored to your business needs, ensuring a seamless user experience.',
         icon: '⚙️',
-        video: digitalBuild
+        video: websiteBuild
     },
     {
         name: 'Consultation & Strategy',

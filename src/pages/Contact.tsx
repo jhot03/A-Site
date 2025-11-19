@@ -1,15 +1,46 @@
-import { motion, easeOut } from 'framer-motion';
+import { motion, easeOut, AnimatePresence } from 'framer-motion';
 import { useSearchParams } from 'react-router-dom';
 import { serviceExamples } from '../constants/serviceExamples';
+import StatusModal from '../components/StatusModel';
+import React from 'react';
 
 const Contact = () => {
   const [searchParams] = useSearchParams();
-  const preselectedService = searchParams.get('service') || ''; // Get the service from the query parameter
+  const [status, setStatus] = React.useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errors, setErrors] = React.useState<string[]>([]);
+  const preselectedService = searchParams.get('service') || ''; 
 
   const inputClass =
     "w-full rounded-lg border border-white/10 bg-white/5 text-white placeholder-white/40 " +
     "px-4 py-3 outline-none transition " +
     "focus:border-white/20 focus:ring-2 focus:ring-[#6366F1]";
+
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+      e.preventDefault();
+      setStatus('submitting');
+      setErrors([]);
+      const form = e.currentTarget;
+      const formData = new FormData(form);
+      try {
+          const res = await fetch('https://formspree.io/f/mwpyvrow', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: formData
+        });
+        const data = await res.json();
+        if (res.ok && data.ok) {
+          setStatus('success');
+          form.reset();
+        } else {
+          const errs = (data.errors || []).map((er: any) => er.message || 'Submission error');
+          setErrors(errs.length ? errs : ['Unknown error']);
+          setStatus('error');
+        }
+      } catch {
+        setErrors(['Network error']);
+        setStatus('error');
+      }
+  }
 
   return (
     <section className="relative py-10">
@@ -29,7 +60,7 @@ const Contact = () => {
 
           <div className="mt-10">
             <div className="rounded-2xl border border-white/10 bg-[#111118]/60 backdrop-blur-md shadow-[0_0_20px_rgba(0,0,0,0.4)] p-6 sm:p-8 text-left">
-              <form className="space-y-5">
+              <form className="space-y-5" onSubmit={handleSubmit}>
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-[#CFCFD8] mb-1">
                     Name
@@ -70,6 +101,7 @@ const Contact = () => {
                         {example.name}
                       </option>
                     ))}
+                    <option value="Other">Other</option>
                   </select>
                 </div>
 
@@ -89,19 +121,49 @@ const Contact = () => {
 
                 <motion.button
                   type="submit"
-                  className="relative w-full px-5 py-3 rounded-lg font-medium text-white bg-linear-to-br from-[#4F46E5] via-[#6366F1] to-[#0EA5E9] shadow-[0_0_20px_rgba(99,102,241,0.3)] overflow-hidden group"
-                  whileHover={{ scale: 1.03, boxShadow: "0 0 30px rgba(99,102,241,0.5)" }}
-                  whileTap={{ scale: 0.98 }}
+                  disabled={status === 'submitting'}
+                  className="relative w-full px-5 py-3 rounded-lg font-medium text-white bg-linear-to-br from-[#4F46E5] via-[#6366F1] to-[#0EA5E9] shadow-[0_0_20px_rgba(99,102,241,0.3)] overflow-hidden group disabled:opacity-60"
+                  whileHover={{ scale: status === 'submitting' ? 1 : 1.03, boxShadow: "0 0 30px rgba(99,102,241,0.5)" }}
+                  whileTap={{ scale: status === 'submitting' ? 1 : 0.98 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <span className="relative z-10">Send Message</span>
+                  <span className="relative z-10">
+                    {status === 'submitting' ? 'Sending...' : 'Send Message'}
+                  </span>
                   <span className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-linear-to-br from-white/20 to-transparent" />
                 </motion.button>
+                {status === 'success' && (
+                  <p role="status" className="text-sm text-emerald-400">
+                    Thanks! Your message was sent.
+                  </p>
+                )}
+                {status === 'error' && (
+                  <div role="alert" className="text-sm text-red-400 space-y-1">
+                    {errors.map((er, i) => <p key={i}>{er}</p>)}
+                  </div>
+                )}
               </form>
             </div>
           </div>
         </motion.div>
       </div>
+      {/* Animate the status modal */}
+      <AnimatePresence>
+        {(status === 'success' || status === 'error') && (
+          <StatusModal
+            variant={status === 'success' ? 'success' : 'error'}
+            messages={
+              status === 'success'
+                ? ['Thanks! Your message was sent.']
+                : (errors.length ? errors : ['Something went wrong.'])
+            }
+            onClose={() => {
+              setStatus('idle');
+              setErrors([]);
+            }}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 };
